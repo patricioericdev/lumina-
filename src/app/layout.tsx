@@ -11,6 +11,15 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   title: "Lumina ✨ — Estudos, Rotina & Bem-estar",
   description: "A plataforma inteligente e acolhedora de estudos para o ENEM e evolução pessoal.",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "Lumina",
+  },
+  icons: {
+    icon: "/icon.svg",
+    apple: "/icon.svg",
+  },
 };
 
 export default function RootLayout({
