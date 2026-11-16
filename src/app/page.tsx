@@ -10,6 +10,7 @@ export default function Home() {
   const [dataFormatada, setDataFormatada] = useState("Carregando data...");
   const [saudacao, setSaudacao] = useState("Olá");
   const [diasEnem, setDiasEnem] = useState("...");
+  const [horasFocadas, setHorasFocadas] = useState("0h");
 
   const { name, target } = useProfile();
 
@@ -46,6 +47,23 @@ export default function Home() {
     const enem2027 = new Date(2027, 10, 7);
     const diff = Math.max(0, Math.ceil((enem2027.getTime() - hojeMeiaNoite.getTime()) / 86400000));
     setDiasEnem(`${diff} dias`);
+
+    try {
+      const rawPomodoro = localStorage.getItem("lumina_pomodoro_sessions_v1");
+      if (rawPomodoro) {
+        const sessions = JSON.parse(rawPomodoro) as { durationMinutes?: number; type?: string }[];
+        const totalMin = sessions
+          .filter((s) => s.type === "foco")
+          .reduce((acc, s) => acc + (s.durationMinutes || 0), 0);
+        if (totalMin > 0) {
+          const h = Math.floor(totalMin / 60);
+          const m = totalMin % 60;
+          setHorasFocadas(h > 0 ? `${h}h${m > 0 ? ` ${m}m` : ""}` : `${totalMin} min`);
+        } else {
+          setHorasFocadas("0h");
+        }
+      }
+    } catch {}
   }, []);
 
   const pendentes = tasks.filter((t) => !t.completed).slice(0, 4);
@@ -116,7 +134,9 @@ export default function Home() {
                 ? "Dia produtivo completo! Descanse bem."
                 : percentage >= 50
                 ? "Você já passou da metade, continue assim!"
-                : "Mantenha o foco, você é capaz!"}
+                : percentage > 0
+                ? "Bom começo! Mantenha o ritmo."
+                : "Seu dia começa agora. Dê o primeiro check! ✨"}
             </span>
           </div>
         </div>
@@ -302,7 +322,7 @@ export default function Home() {
             <div className="space-y-3 text-sm text-[#75445F]">
               <div className="flex justify-between items-center p-2 rounded-xl bg-[#FFF9FC] border border-[#F8EAF2]">
                 <span className="font-medium text-xs">Horas focadas</span>
-                <span className="font-extrabold text-[#C77DA5]">12 horas</span>
+                <span className="font-extrabold text-[#C77DA5]">{horasFocadas}</span>
               </div>
               <div className="flex justify-between items-center p-2 rounded-xl bg-[#FFF9FC] border border-[#F8EAF2]">
                 <span className="font-medium text-xs">Tarefas concluídas</span>

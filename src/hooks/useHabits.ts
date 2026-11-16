@@ -13,7 +13,7 @@ const DEFAULT_HABITS: Habit[] = [
     name: "Beber 2L de água",
     icon: "💧",
     category: "Saúde",
-    streak: 4,
+    streak: 0,
     completedDates: [],
   },
   {
@@ -21,7 +21,7 @@ const DEFAULT_HABITS: Habit[] = [
     name: "Ler 20 minutos de literatura",
     icon: "📖",
     category: "Estudos",
-    streak: 3,
+    streak: 0,
     completedDates: [],
   },
   {
@@ -29,7 +29,7 @@ const DEFAULT_HABITS: Habit[] = [
     name: "Alongamento ou caminhada leve",
     icon: "🧘",
     category: "Saúde",
-    streak: 2,
+    streak: 0,
     completedDates: [],
   },
   {
@@ -37,7 +37,7 @@ const DEFAULT_HABITS: Habit[] = [
     name: "Dormir no horário (8h de sono)",
     icon: "😴",
     category: "Rotina",
-    streak: 5,
+    streak: 0,
     completedDates: [],
   },
   {
@@ -45,7 +45,7 @@ const DEFAULT_HABITS: Habit[] = [
     name: "Organizar a mesa de estudos",
     icon: "🧹",
     category: "Rotina",
-    streak: 1,
+    streak: 0,
     completedDates: [],
   },
   {
@@ -53,31 +53,12 @@ const DEFAULT_HABITS: Habit[] = [
     name: "Momento de autocuidado ou skin care",
     icon: "✨",
     category: "Mente",
-    streak: 6,
+    streak: 0,
     completedDates: [],
   },
 ];
 
-const DEFAULT_JOURNAL: JournalEntry[] = [
-  {
-    id: "j-1",
-    date: "Hoje",
-    createdAt: "2026-11-09T18:00:00.000Z",
-    title: "Um dia produtivo e calmo",
-    content: "Consegui avançar bem na matéria de Ecologia e fiz as questões com calma. Percebi que respirar fundo antes de começar me ajuda a não ficar ansiosa.",
-    mood: "bem",
-    gratitude: "Grata pela xícara de café quente e pelo apoio da minha família.",
-  },
-  {
-    id: "j-2",
-    date: "Ontem",
-    createdAt: "2026-11-08T18:00:00.000Z",
-    title: "Começando a me organizar pro ENEM",
-    content: "Decidi que vou estudar com consistência, sem me cobrar perfeição. Cada pequeno passo hoje vai fazer a diferença em 2027.",
-    mood: "radiante",
-    gratitude: "Grata por ter clareza do que quero alcançar.",
-  },
-];
+const DEFAULT_JOURNAL: JournalEntry[] = [];
 
 export function useHabits() {
   const [habits, setHabits] = useState<Habit[]>([]);
@@ -126,12 +107,8 @@ export function useHabits() {
       if (savedHabits) {
         setHabits(JSON.parse(savedHabits));
       } else {
-        // Inicializar com 2 hábitos concluídos hoje para visualização inicial
-        const initial = DEFAULT_HABITS.map((h, i) =>
-          i < 2 ? { ...h, completedDates: [currentTodayStr] } : h
-        );
-        setHabits(initial);
-        localStorage.setItem(HABITS_KEY, JSON.stringify(initial));
+        setHabits(DEFAULT_HABITS);
+        localStorage.setItem(HABITS_KEY, JSON.stringify(DEFAULT_HABITS));
       }
 
       const savedJournal = localStorage.getItem(JOURNAL_KEY);

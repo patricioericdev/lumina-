@@ -39,7 +39,7 @@ const DEFAULT_TASKS: Task[] = [
     category: "Saúde",
     priority: "baixa",
     dueDate: "Diário",
-    completed: true,
+    completed: false,
     createdAt: new Date().toISOString(),
   },
   {
@@ -48,7 +48,7 @@ const DEFAULT_TASKS: Task[] = [
     category: "Casa",
     priority: "baixa",
     dueDate: "Hoje",
-    completed: true,
+    completed: false,
     createdAt: new Date().toISOString(),
   },
 ];
