@@ -3,7 +3,8 @@
 import { useState, useEffect } from "react";
 import { Task, Category, Priority } from "@/types/task";
 
-const STORAGE_KEY = "study_life_tasks_v1";
+const STORAGE_KEY = "lumina_tasks_v2";
+const EVENT_KEY = "lumina_tasks_updated";
 
 const DEFAULT_TASKS: Task[] = [
   {
@@ -79,10 +80,10 @@ export function useTasks() {
       } catch {}
     };
 
-    window.addEventListener("study_life_tasks_updated", handleStorageChange);
+    window.addEventListener(EVENT_KEY, handleStorageChange);
     window.addEventListener("storage", handleStorageChange);
     return () => {
-      window.removeEventListener("study_life_tasks_updated", handleStorageChange);
+      window.removeEventListener(EVENT_KEY, handleStorageChange);
       window.removeEventListener("storage", handleStorageChange);
     };
   }, []);
@@ -91,7 +92,7 @@ export function useTasks() {
     setTasks(newTasks);
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(newTasks));
-      window.dispatchEvent(new Event("study_life_tasks_updated"));
+      window.dispatchEvent(new Event(EVENT_KEY));
     } catch {}
   };
 

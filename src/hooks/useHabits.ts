@@ -3,9 +3,10 @@
 import { useState, useEffect } from "react";
 import { Habit, JournalEntry, MoodType } from "@/types/habits";
 
-const HABITS_KEY = "study_life_habits_v1";
-const JOURNAL_KEY = "study_life_journal_v1";
-const MOOD_KEY = "study_life_moods_v1";
+const HABITS_KEY = "lumina_habits_v2";
+const JOURNAL_KEY = "lumina_journal_v2";
+const MOOD_KEY = "lumina_moods_v2";
+const HABITS_EVENT = "lumina_habits_updated";
 
 const DEFAULT_HABITS: Habit[] = [
   {
@@ -139,15 +140,15 @@ export function useHabits() {
       } catch {}
     };
 
-    window.addEventListener("study_life_habits_updated", handleSync);
-    return () => window.removeEventListener("study_life_habits_updated", handleSync);
+    window.addEventListener(HABITS_EVENT, handleSync);
+    return () => window.removeEventListener(HABITS_EVENT, handleSync);
   }, []);
 
   const saveHabits = (newHabits: Habit[]) => {
     setHabits(newHabits);
     try {
       localStorage.setItem(HABITS_KEY, JSON.stringify(newHabits));
-      window.dispatchEvent(new Event("study_life_habits_updated"));
+      window.dispatchEvent(new Event(HABITS_EVENT));
     } catch {}
   };
 

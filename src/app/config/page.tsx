@@ -163,6 +163,31 @@ export default function ConfigPage() {
           Estudos, rotina, autocuidado e alta performance sem cobranças tóxicas.
         </p>
       </section>
+
+      {/* SEÇÃO 4: REINICIAR DADOS (LIMPEZA COMPLETA) */}
+      <section className="bg-white rounded-3xl p-6 border border-red-100 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <h3 className="text-sm font-bold text-zinc-800 flex items-center gap-2">
+            <span>🧹</span> Reiniciar Aplicativo
+          </h3>
+          <p className="text-xs text-zinc-500 mt-0.5">
+            Zera todo o histórico e tarefas salvas neste navegador para começar 100% do zero.
+          </p>
+        </div>
+
+        <button
+          type="button"
+          onClick={() => {
+            if (typeof window !== "undefined" && confirm("Deseja realmente zerar todo o histórico e começar do zero?")) {
+              localStorage.clear();
+              window.location.reload();
+            }
+          }}
+          className="px-4 py-2 rounded-xl text-xs font-bold text-red-600 bg-red-50 hover:bg-red-100 border border-red-200 transition-all cursor-pointer self-start sm:self-auto shrink-0"
+        >
+          Zerar Todos os Dados
+        </button>
+      </section>
     </div>
   );
 }
