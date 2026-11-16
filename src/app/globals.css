@@ -1,0 +1,177 @@
+@import "tailwindcss";
+
+:root {
+  --lumina-primary: #C026D3;
+  --lumina-primary-light: #FDF2F8;
+  --lumina-primary-hover: #A21CAF;
+  --lumina-bg-main: #FAFAFD;
+  --lumina-text-main: #18181B;
+  --lumina-text-muted: #6B7280;
+  --lumina-border-main: #F1F1F5;
+  --lumina-card-bg: #FFFFFF;
+  --lumina-grad-from: #D946EF;
+  --lumina-grad-to: #8B5CF6;
+}
+
+body {
+  background-color: var(--lumina-bg-main, #FAFAFD);
+  color: var(--lumina-text-main, #18181B);
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+/* =========================================================================
+   MAPEAMENTO DINÂMICO DE TEMAS DO LUMINA (MODERNO & CLEAN)
+   ========================================================================= */
+
+/* Textos */
+.text-\[\#75445F\] {
+  color: var(--lumina-text-main, #18181B) !important;
+}
+.text-\[\#C77DA5\] {
+  color: var(--lumina-primary, #C026D3) !important;
+}
+.text-\[\#9C7890\] {
+  color: var(--lumina-text-muted, #6B7280) !important;
+}
+
+/* Fundos */
+.bg-\[\#C77DA5\] {
+  background-color: var(--lumina-primary, #C026D3) !important;
+}
+.bg-\[\#F8EAF2\] {
+  background-color: var(--lumina-primary-light, #FDF2F8) !important;
+}
+.bg-\[\#FFF9FC\] {
+  background-color: var(--lumina-bg-main, #FAFAFD) !important;
+}
+
+/* Bordas */
+.border-\[\#F8EAF2\] {
+  border-color: var(--lumina-border-main, #F1F1F5) !important;
+}
+
+/* Efeitos Hover */
+.hover\:bg-\[\#b56e94\]:hover {
+  background-color: var(--lumina-primary-hover, #A21CAF) !important;
+}
+.hover\:border-\[\#C77DA5\]:hover {
+  border-color: var(--lumina-primary, #C026D3) !important;
+}
+.hover\:text-\[\#C77DA5\]:hover {
+  color: var(--lumina-primary, #C026D3) !important;
+}
+
+/* Checkbox e Accent */
+.accent-\[\#C77DA5\] {
+  accent-color: var(--lumina-primary, #C026D3) !important;
+}
+
+/* Gradientes */
+.from-\[\#C77DA5\] {
+  --tw-gradient-from: var(--lumina-grad-from, #D946EF) var(--tw-gradient-from-position, ) !important;
+}
+.to-\[\#8E446C\], .to-\[\#B36B92\], .to-\[\#b56e94\] {
+  --tw-gradient-to: var(--lumina-grad-to, #8B5CF6) var(--tw-gradient-to-position, ) !important;
+}
+
+/* =========================================================================
+   MODO ESCURO PROFISSIONAL (OLED / LINEAR HIGH CONTRAST)
+   ========================================================================= */
+.dark {
+  --lumina-primary: #E879F9;
+  --lumina-primary-light: #1F1726;
+  --lumina-primary-hover: #F0ABFC;
+  --lumina-bg-main: #09090B;
+  --lumina-text-main: #FAFAFA;
+  --lumina-text-muted: #A1A1AA;
+  --lumina-border-main: #27272A;
+  --lumina-card-bg: #121215;
+  --lumina-grad-from: #D946EF;
+  --lumina-grad-to: #8B5CF6;
+}
+
+.dark body {
+  background-color: #09090B !important;
+  color: #FAFAFA !important;
+}
+
+.dark .bg-white\/90,
+.dark .bg-white,
+.dark .bg-\[\#FFF9FC\] {
+  background-color: #121215 !important;
+  color: #FAFAFA !important;
+  border-color: #27272A !important;
+}
+
+.dark .border-\[\#F8EAF2\] {
+  border-color: #27272A !important;
+}
+
+.dark .text-\[\#75445F\] {
+  color: #FAFAFA !important;
+}
+
+.dark .text-\[\#9C7890\] {
+  color: #A1A1AA !important;
+}
+
+.dark .bg-\[\#EDE5F7\],
+.dark .bg-\[\#F8EAF2\] {
+  background-color: #1E1B24 !important;
+  color: #F472B6 !important;
+  border-color: #34283A !important;
+}
+
+.dark input[type="text"],
+.dark input[type="number"],
+.dark input[type="url"],
+.dark input[type="date"],
+.dark textarea,
+.dark select {
+  background-color: #18181B !important;
+  color: #FAFAFA !important;
+  border-color: #27272A !important;
+}
+
+.dark input:focus,
+.dark textarea:focus,
+.dark select:focus {
+  border-color: #E879F9 !important;
+}
+
+.dark .shadow-sm,
+.dark .shadow-xs,
+.dark .shadow-2xs {
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* =========================================================================
+   ESTÉTICA GERAL & SCROLLBAR
+   ========================================================================= */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--lumina-primary, #C026D3);
+  border-radius: 9999px;
+  opacity: 0.5;
+}
+
+input[type="checkbox"] {
+  accent-color: var(--lumina-primary, #C026D3);
+  width: 17px;
+  height: 17px;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+}
